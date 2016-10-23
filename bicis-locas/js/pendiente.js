@@ -1,5 +1,13 @@
-// variables globales
-// Contador es igual a i
+/*Todos los campos son obligatorios, excepto los dos últimos.
+Los campos nombre y apellido sólo deben permitir caracteres de la A-Z
+Para los campos nombre y apellido la primera letra debe ser mayúscula
+Validar que el campo email tenga un formato válido. Ej: name@domain.com
+El campo password debe tener al menos 6 caracteres
+El campo password no puede ser igual a "password" ó "123456" ó "098754"
+El valor seleccionado de bicis, debe ser una de las opciones presentadas
+Si algún campo presenta error debe informarse al usuario por medio de un alert*/
+
+
 var cajaInput = document.getElementsByClassName("input-box");
 
 function validateForm(){
@@ -72,12 +80,18 @@ function validarCorreo(){
 };
 
 function validarContrasena(){
-	var inputPassword = document.getElementById("inputPassword").value;
-	var regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}/;
-	// Este es para velidar el password
-	if (! (regexPassword.test(inputPassword) ) ){
-		i = 3;
-		alert("el password es incorrecto");
+	var inputPassword = document.getElementById("input-password").value;
+	// Este es para validar el password
+	if( inputPassword == null || inputPassword == "" ){
+		alert("tienes que ingresar una contraseña");
 		return false;
-	}
+	}else if ( inputPassword == "password" ||  inputPassword == "123456" || inputPassword == "098754"){
+		alert("Esa contraseña no es valida");
+		return false;
+	}else if  ( inputPassword > 6 ){
+		alert("La contraseña tiene que tener al menos 6 carácteres y al menos 1 letra");
+		return false;
+	};
+	console.log("esta bien el password");
+	return true;
 };
